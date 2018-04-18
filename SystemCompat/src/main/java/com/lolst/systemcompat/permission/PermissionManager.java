@@ -140,7 +140,7 @@ public class PermissionManager {
      * @param context
      * @return
      */
-    public static boolean haveInstallPermission(Context context) {
+    public static boolean hasInstallPermission(Context context) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
             return context.getPackageManager().canRequestPackageInstalls();
         }
