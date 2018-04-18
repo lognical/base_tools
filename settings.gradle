@@ -1,1 +1,1 @@
-include ':app', ':SystemCompat'
+include ':SystemCompat'
