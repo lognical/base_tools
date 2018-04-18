@@ -18,17 +18,17 @@ import android.support.v4.app.ActivityCompat;
 public class PermissionManager {
 
     // sd卡
-    public static final int REQUEST_CODE_EXTERNAL_STORAGE = 0x800;
+    public static final int REQUEST_CODE_EXTERNAL_STORAGE = 0x10;
     // 定位
-    public static final int REQUEST_CODE_LOCATION = 0x801;
+    public static final int REQUEST_CODE_LOCATION = 0x11;
     // 联系人
-    public static final int REQUEST_CODE_CONTACTS = 0x802;
+    public static final int REQUEST_CODE_CONTACTS = 0x12;
     // 摄像头
-    public static final int REQUEST_CODE_CAMERA = 0x803;
+    public static final int REQUEST_CODE_CAMERA = 0x13;
     // 录音
-    public static final int REQUEST_CODE_MICROPHONE = 0x804;
+    public static final int REQUEST_CODE_MICROPHONE = 0x14;
     // 未知app来源
-    public static final int REQUEST_CODE_UNKNOWN_APP_SORCE = 0x805;
+    public static final int REQUEST_CODE_UNKNOWN_APP_SORCE = 0x15;
 
     // 读写SD卡权限
     public static String[] PERMISSIONS_STORAGE = {
