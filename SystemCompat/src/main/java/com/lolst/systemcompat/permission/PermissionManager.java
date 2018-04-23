@@ -155,8 +155,12 @@ public class PermissionManager {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
             //注意这个是8.0新API
             // 注意：当通过Intent 跳转到未知应用授权列表的时候，一定要加上包名，这样就能直接跳转到你的app下，不然只能跳转到列表。
-            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
-            activity.startActivityForResult(intent, REQUEST_CODE_UNKNOWN_APP_SORCE);
+            try{
+                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
+                activity.startActivityForResult(intent, REQUEST_CODE_UNKNOWN_APP_SORCE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
