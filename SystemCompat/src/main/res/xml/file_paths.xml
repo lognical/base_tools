@@ -15,12 +15,12 @@
     <!--下载文件存放目录-->
     <external-path
         name="external_Download"
-        path="goHealth/Download" />
+        path="goHealth/Download/" />
 
     <!--拍照照片存放目录-->
     <external-path
         name="external_DCIM"
-        path="goHealth/DCIM" />
+        path="goHealth/DCIM/" />
 
     <external-files-path
         name="external_file_path"
