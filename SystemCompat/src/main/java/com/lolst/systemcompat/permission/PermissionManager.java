@@ -2,7 +2,6 @@ package com.lolst.systemcompat.permission;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -29,6 +28,10 @@ public class PermissionManager {
     public static final int REQUEST_CODE_MICROPHONE = 0x14;
     // 未知app来源
     public static final int REQUEST_CODE_UNKNOWN_APP_SORCE = 0x15;
+
+    public static String[] PERMISSIONS_INSTALL_PACKAGES = {
+            Manifest.permission.REQUEST_INSTALL_PACKAGES
+    };
 
     // 读写SD卡权限
     public static String[] PERMISSIONS_STORAGE = {
@@ -137,25 +140,27 @@ public class PermissionManager {
     /**
      * 是否能安装应用（适配Android 8.0默认关闭了未知来源应用权限）
      *
-     * @param context
+     * @param activity
      * @return
      */
-    public static boolean hasInstallPermission(Context context) {
+    public static boolean hasInstallPermission(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return context.getPackageManager().canRequestPackageInstalls();
+            return activity.getPackageManager().canRequestPackageInstalls() ||
+                    hasPermissions(activity, Manifest.permission.REQUEST_INSTALL_PACKAGES);
         }
         return true;
     }
 
     /**
      * 跳转到本应用的授权列表
+     *
      * @param activity
      */
     public static void startInstallPermissionSettingActivity(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //注意这个是8.0新API
             // 注意：当通过Intent 跳转到未知应用授权列表的时候，一定要加上包名，这样就能直接跳转到你的app下，不然只能跳转到列表。
-            try{
+            try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
                 activity.startActivityForResult(intent, REQUEST_CODE_UNKNOWN_APP_SORCE);
             } catch (Exception e) {
